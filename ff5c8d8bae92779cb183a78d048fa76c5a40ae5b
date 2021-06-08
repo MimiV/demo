@@ -1,0 +1,1 @@
+{"jobID":"3cc18692-9ab1-a1fb-64e8-ebfb0058b5b2","spec":{"type":"policy","cause":{"Message":"","User":"Michelle \u003cmichelle.vasconcelos@gopci.com\u003e"},"spec":{"default:deployment/nginxhello":{"add":{"automated":"true"},"remove":{}}}},"result":null}
