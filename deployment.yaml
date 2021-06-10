@@ -1,40 +1,25 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: my-nginx
   labels:
-    app: nginxhello
-  name: nginxhello
-  annotations:
+    app: my-nginx
 spec:
-  replicas: 4
+  replicas: 2
   selector:
     matchLabels:
-      app: nginxhello
+      app: my-nginx
   template:
     metadata:
       labels:
-        app: nginxhello
+        app: my-nginx
     spec:
       containers:
-      - image: nbrown/nginxhello:1.19.2
-        name: nginxhello
+      - name: my-nginx
+        image: nginx:alpine
         ports:
         - containerPort: 80
-        env:
-        - name: NODE_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
-        livenessProbe:
-          initialDelaySeconds: 2
-          periodSeconds: 2
-          httpGet:
-            port: 80
-            path: /healthz/live
-        readinessProbe:
-          initialDelaySeconds: 2
-          periodSeconds: 2
-          httpGet:
-            port: 80
-            path: /healthz/ready
+        resources:
+          limits:
+            memory: "128Mi" #128 MB
+            cpu: "100m" #100 millicpu (.1 cpu or 10% of the cpu)
